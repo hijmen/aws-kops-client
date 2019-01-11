@@ -1,0 +1,17 @@
+version: "2"
+services:
+  aws-kops-client:
+    build: .
+    image: aws_kops_client:latest
+    volumes:
+    - aws_config:/root/.aws
+    - ssh_config:/root/.ssh
+    - kube_config:/root/.kube
+    - ./workdir:/workdir
+    env_file:
+      - properties.env
+
+volumes:
+  aws_config:
+  ssh_config:
+  kube_config:
